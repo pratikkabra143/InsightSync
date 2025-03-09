@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}BI & CRM{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+
+  <!-- Bootstrap Icons (optional) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+
+  {% block extra_css %}{% endblock %}
+
+  <style>
+    /* Body background */
+    body {
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sidebar (Left Nav) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background-color: #3E8EFF; /* Adjust to your preferred blue shade */
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+    }
+
+    /* Logo/Brand at top of sidebar */
+    .sidebar .brand {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    /* Navigation links */
+    .sidebar .nav-link {
+      color: #e6f0ff;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar .nav-link i {
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    /* Main content offset by sidebar width */
+    .main-content {
+      margin-left: 240px; /* Must match sidebar width */
+      padding: 1rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    /* Example top bar styling (optional) */
+    .top-bar {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar .greeting {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .top-bar .stats {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .top-bar .stats div {
+      text-align: center;
+    }
+    .top-bar .stats div strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+    .top-bar .stats div span {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Footer (optional) */
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="brand">BI & CRM</div>
+    <nav class="flex-grow-1">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+            href="{% url 'dashboard' %}"
+          >
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'customer_list' %}active{% endif %}"
+            href="{% url 'customer_list' %}"
+          >
+            <i class="bi bi-people"></i> Customers
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}"
+            href="{% url 'product_list' %}"
+          >
+            <i class="bi bi-box-seam"></i> Products
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'order_list' %}active{% endif %}"
+            href="{% url 'order_list' %}"
+          >
+            <i class="bi bi-bag"></i> Orders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'churn_prediction' %}active{% endif %}"
+            href="{% url 'churn_prediction' %}"
+          >
+            <i class="bi bi-arrow-repeat"></i> Churn
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'sales_forecast' %}active{% endif %}"
+            href="{% url 'sales_forecast' %}"
+          >
+            <i class="bi bi-bar-chart-line"></i> Sales
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'product_recommendations' %}active{% endif %}"
+            href="{% url 'product_recommendations' %}"
+          >
+            <i class="bi bi-lightbulb"></i> Recommendations
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    {% block content %}{% endblock %}
+    <footer>
+      <p>© 2025 BI & CRM </p>
+    </footer>
+  </div>
+
+  <!-- Bootstrap + Extra JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
